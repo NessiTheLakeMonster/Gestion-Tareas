@@ -12,19 +12,6 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-
-    await queryInterface.bulkInsert('Roles', [
-      {
-        nombre: 'Administrador',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        nombre: 'Programador',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-    ], {});
   },
 
   async down (queryInterface, Sequelize) {
