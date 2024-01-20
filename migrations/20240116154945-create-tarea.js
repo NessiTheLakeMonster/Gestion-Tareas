@@ -27,16 +27,6 @@ module.exports = {
       completada: {
         type: Sequelize.BOOLEAN
       },
-      id_usuario: {
-        type: Sequelize.DataTypes.INTEGER,
-        references: {
-          model: {
-            tableName: 'users'
-          },
-          key: 'id'
-        },
-        allowNull: false
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
