@@ -1,4 +1,5 @@
 'use strict';
+const { genTareas } = require('../factories/tareasFactory.js');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -12,6 +13,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    const tareas = await genTareas(5);
+    await queryInterface.bulkInsert('tareas', tareas, {});
   },
 
   async down (queryInterface, Sequelize) {
