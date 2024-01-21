@@ -1,10 +1,11 @@
-const { Sequalize, Op } = require('sequelize');
+require('dotenv').config();
+const { Sequelize, Op } = require('sequelize');
 const models = require('../models/index.js');
 
-class ConexionSequalize {
+class ConexionSequelize {
 
     constructor() {
-        this.db = new Sequalize(process.env.DB_DEV, process.env.DB_USER, process.env.DB_PASSWORD, {
+        this.db = new Sequelize(process.env.DB_DEV, process.env.DB_USER, process.env.DB_PASSWORD, {
             host: process.env.DB_HOST,
             dialect: process.env.DB_DIALECT,
             pool: {
@@ -32,4 +33,4 @@ class ConexionSequalize {
     }
 }
 
-module.exports = ConexionSequalize;
+module.exports = ConexionSequelize;

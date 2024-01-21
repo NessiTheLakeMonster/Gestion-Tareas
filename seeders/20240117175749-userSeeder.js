@@ -15,7 +15,7 @@ module.exports = {
      * }], {});
     */
 
-    constAdminPassword = await bcrypt.hash('admin123', 10);
+    const constAdminPassword = await bcrypt.hash('admin123', 10);
 
     const adminUser = {
       nombre: 'administador',
@@ -28,7 +28,7 @@ module.exports = {
 
     const fakeUsers = await genUsers(5);
     const users = [adminUser, fakeUsers];
-    
+
     await queryInterface.bulkInsert('users', users, {});
   },
 

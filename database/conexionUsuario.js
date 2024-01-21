@@ -1,4 +1,4 @@
-const { Sequalize, Op } = require('sequelize');
+const {Sequalize, Op} = require('sequelize');
 const models = require('../models/index.js');
 const ConexionSequalize = require('./conexionSequalize.js');
 
@@ -16,7 +16,13 @@ class conexionUsuario {
         console.log('Obteniendo usuarios...');
 
         resultado = await models.User.findAll({
-            attributes: ['id', 'nombre', 'apellido', 'email', 'password', 'admin']
+            attributes:
+                [
+                    'id',
+                    'nombre',
+                    'apellido',
+                    'email',
+                    'password']
         });
 
         this.con.desconectar();
@@ -52,9 +58,39 @@ class conexionUsuario {
             }
             throw error;
         } finally {
-            this.desconectar();
+            this.con.desconectar();
         }
 
         return resultado;
     }
+
+    modificarUsuario = async (id, body) => {
+        this.con.conectar();
+        let resultado = await models.User.findByPk(id);
+
+        if (!resultado) {
+            this.con.desconectar()
+            throw error;
+        }
+
+        await resultado.update(body);
+        this.con.desconectar();
+        return resultado;
+    }
+
+    borrarUsuario = async (id) => {
+        this.con.conectar();
+        let resultado = await models.User.findByPk(id);
+
+        if (!resultado) {
+            this.con.desconectar()
+            throw error;
+        }
+
+        await resultado.destroy();
+        this.con.desconectar();
+        return resultado;
+    }
 }
+
+module.exports = conexionUsuario;
