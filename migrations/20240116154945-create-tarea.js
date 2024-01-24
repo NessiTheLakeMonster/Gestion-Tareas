@@ -10,12 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       descripcion: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       dificultad: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       horas_previstas: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       horas_realizadas: {
@@ -25,6 +28,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       completada: {
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       createdAt: {

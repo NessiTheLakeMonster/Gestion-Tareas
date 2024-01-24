@@ -65,6 +65,59 @@ class conexionTarea {
             return resultado;
         }
     }
+
+    modificarTarea = async (id, body) => {
+        this.con.conectar();
+        let resultado = await models.Tarea.findByPk(id);
+
+        if (!resultado) {
+            this.con.desconectar()
+            throw error;
+        }
+
+        await resultado.update(body);
+        this.con.desconectar();
+        return resultado;
+    }
+
+    borrarTarea = async (id) => {
+        this.con.conectar();
+        let resultado = await models.Tarea.findByPk(id);
+
+        if (!resultado) {
+            this.con.desconectar()
+            throw error;
+        }
+
+        await resultado.destroy();
+        this.con.desconectar();
+        return resultado;
+    }
+
+    /* -------------------- FUNCIONES PARA ASIGNACIONES DE TAREAS ------------------ */
+
+    asignarTarea = async (idTarea, idUsuario) => {
+        let resultado = 0;
+        this.con.conectar();
+
+        try {
+            const tareaNueva = await models.TareaAsignada.create({
+                id_tarea: idTarea,
+                id_usuario: idUsuario
+            });
+            resultado = 1;
+        } catch (error) {
+            if (error instanceof Sequelize.UniqueConstraintError) {
+                console.log(`El id ${body.id} ya existe en la base de datos.`);
+            } else {
+                console.log('Ocurrió un error desconocido: ', error);
+            }
+            throw error;
+        } finally {
+            this.con.desconectar();
+            return resultado;
+        }
+    } 
 }
 
 module.exports = conexionTarea;

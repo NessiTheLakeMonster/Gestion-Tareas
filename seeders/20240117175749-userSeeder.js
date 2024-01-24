@@ -15,21 +15,25 @@ module.exports = {
      * }], {});
     */
 
-    const constAdminPassword = await bcrypt.hash('admin123', 10);
+    try {
+      /* const constAdminPassword = await bcrypt.hash('123', 10); */
 
-    const adminUser = {
-      nombre: 'administador',
-      apellido: 'administrador',
-      email: 'administrador@administrador.com',
-      password: constAdminPassword,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      /* const adminUser = {
+        nombre: 'administador',
+        apellido: 'administrador',
+        email: 'administrador@administrador.com',
+        password: "admin123",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      } */
+
+      const fakeUsers = await genUsers(5);
+      /* const users = [adminUser, fakeUsers]; */
+
+      await queryInterface.bulkInsert('users', fakeUsers, {});
+    } catch (error) {
+      console.log(error);
     }
-
-    const fakeUsers = await genUsers(5);
-    const users = [adminUser, fakeUsers];
-
-    await queryInterface.bulkInsert('users', users, {});
   },
 
   async down(queryInterface, Sequelize) {

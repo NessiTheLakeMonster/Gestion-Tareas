@@ -91,6 +91,61 @@ class conexionUsuario {
         this.con.desconectar();
         return resultado;
     }
+
+    login = async (email, password) => {
+        let resultado = [];
+        this.con.conectar();
+
+        resultado = await models.User.findOne({
+            where: {
+                email: email,
+                password: password
+            }
+        });
+
+        this.con.desconectar();
+        if (!resultado) {
+            throw error;
+        }
+
+        return resultado;
+    }
+
+    getUserByEmail = async (email) => {
+        let resultado = [];
+        this.con.conectar();
+
+        resultado = await models.User.findOne({
+            where: {
+                email: email
+            }
+        });
+
+        this.con.desconectar();
+        if (!resultado) {
+            throw error;
+        }
+
+        return resultado;
+    }
+
+    recuperarIdUsuario = async (email) => {
+        let resultado = [];
+        this.con.conectar();
+
+        resultado = await models.User.findOne({
+            where: {
+                email: email
+            }
+        });
+
+        this.con.desconectar();
+        if (!resultado) {
+            throw error;
+        }
+
+        return resultado.id;
+    }
 }
 
 module.exports = conexionUsuario;

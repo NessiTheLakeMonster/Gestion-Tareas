@@ -53,8 +53,60 @@ const postTarea = async (req = request, res = response) => {
         });
 }
 
+const putTarea = async (req = request, res = response) => {
+    const conx = new Conexion();
+
+    conx.modificarTarea(req.params.id, req.body)
+        .then(msg => {
+            console.log('Modificado correctamente!');
+            res.status(201).json(msg);
+        })
+        .catch(err => {
+            console.log(err);
+            console.log('Fallo en la modificación!');
+            res.status(203).json(err);
+        });
+
+}
+
+const deleteTarea = async (req = request, res = response) => {
+    const conx = new Conexion();
+
+    conx.borrarTarea(req.params.id)
+        .then(msg => {
+            console.log('Borrado correctamente!');
+            res.status(201).json(msg);
+        })
+        .catch(err => {
+            console.log(err);
+            console.log('Fallo en el borrado!');
+            res.status(203).json(err);
+        });
+
+}
+
+/* ----------------- ASIGNACION DE TAREAS ------------------------------------- */
+
+const postAsignaciones = async (req = request, res = response) => {
+    const conx = new Conexion();
+
+    conx.asignarTarea(req.params.idUsuario, req.params.idTarea)
+        .then(msg => {
+            console.log('Insertado correctamente!');
+            res.status(201).json(msg);
+        })
+        .catch(err => {
+            console.log(err);
+            console.log('Fallo en el registro!');
+            res.status(203).json(err);
+        });
+}
+
 module.exports = {
     tareasGet,
     tareasGetById,
-    postTarea
+    postTarea,
+    putTarea,
+    deleteTarea,
+    postAsignaciones
 }

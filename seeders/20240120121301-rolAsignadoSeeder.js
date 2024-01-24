@@ -37,6 +37,11 @@ module.exports = {
     
         await queryInterface.bulkInsert('rolAsignado', [rolAdminAsignado], {});w
        */
+
+    const fakeUsers = {
+      id_rol: 1,
+      id_usuario: 1,
+    }
   },
 
   async down(queryInterface, Sequelize) {
