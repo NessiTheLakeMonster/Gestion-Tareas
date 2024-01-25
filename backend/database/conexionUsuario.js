@@ -1,4 +1,4 @@
-const {Sequalize, Op} = require('sequelize');
+const { Sequalize, Op } = require('sequelize');
 const models = require('../models/index.js');
 const ConexionSequalize = require('./conexionSequalize.js');
 
@@ -145,6 +145,22 @@ class conexionUsuario {
         }
 
         return resultado.id;
+    }
+
+    emailExisteValidator = async (email) => {
+        let resultado = [];
+        this.con.conectar();
+
+        resultado = await models.User.findAll({
+            where: {
+                email: email
+            }
+        });
+
+        this.con.desconectar();
+        if (!resultado) {
+            throw error;
+        }
     }
 }
 
