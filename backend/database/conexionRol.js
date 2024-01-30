@@ -1,11 +1,11 @@
-const {Sequalize, Op} = require('sequelize');
+const {Sequelize, Op} = require('sequelize');
 const models = require('../models/index.js');
-const ConexionSequalize = require('./conexionSequalize.js');
+const ConexionSequelize = require('./conexionSequelize.js');
 
 class conexionRol {
 
     constructor() {
-        this.con = new ConexionSequalize();
+        this.con = new ConexionSequelize();
     }
 
     /* -------------------- FUNCIONES DE LA TABLA DE ROLES ------------------ */

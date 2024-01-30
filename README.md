@@ -73,6 +73,7 @@ nodemon app/app
             "password" : "admin123"
         }
     ```
++ Observaciones: el JSON de respuesta devolverá el `token`
 
 #### Modificación de datos de un usuario
 

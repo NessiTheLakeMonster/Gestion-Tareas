@@ -1,0 +1,30 @@
+<div class="form-container">
+    <h1>Inicio de sesión</h1>
+
+    <form [formGroup]="formLogin">
+        <mat-form-field>
+            <input matInput placeholder="ejemplo@ejemplo.com" formControlName="email" name="user" required>
+            <mat-icon matSuffix>email</mat-icon>
+    
+            @if (formLogin.hasError('email')) { 
+                <mat-error>El email no es valido</mat-error>
+            }
+    
+            @if (formLogin.hasError('required', 'email')) { 
+                <mat-error>El email es requerido</mat-error>
+            }
+        </mat-form-field><br>
+    
+        <mat-form-field>
+            <input matInput type="password" placeholder="Contraseña" formControlName="password" name="password" required>
+            <mat-icon matSuffix>lock</mat-icon>
+    
+            @if (formLogin.hasError('required', 'password')) { 
+                <mat-error>La contraseña es requerida</mat-error>
+            }
+        </mat-form-field><br>
+
+        <button mat-raised-button color="primary" (click)="login()">Iniciar sesión</button>
+    </form>
+</div>
+

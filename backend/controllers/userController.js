@@ -1,5 +1,6 @@
-const {response,request} = require('express');
+const { response, request } = require('express');
 const Conexion = require('../database/conexionUsuario.js');
+const bcrypt = require('bcrypt');
 
 const usuariosGet = async (req = request, res = response) => {
     const conx = new Conexion();
@@ -37,16 +38,22 @@ const usuariosGetById = async (req = request, res = response) => {
         });
 }
 
-const usuariosPost =  (req = request, res = response) => {
+const cifrarPasswd = async (password) => {
+    return bcrypt.hash(password, 10);
+}
+
+const usuariosPost =  async (req = request, res = response) => {
     const conx = new Conexion();
-    
-    //conx.registrarUsuario(req.body.DNI, req.body.Nombre, req.body.Clave, req.body.Tfno)    
-    conx.registrarUsuario(req.body)    
-        .then( msg => {
+    const body = req.body;
+    body.password = await cifrarPasswd(body.password);
+
+    conx.registrarUsuario(body)
+        .then(msg => {
+            console.log(body);
             console.log('Insertado correctamente!');
             res.status(201).json(msg);
         })
-        .catch( err => {
+        .catch(err => {
             console.log(err);
             console.log('Fallo en el registro!');
             res.status(203).json(err);

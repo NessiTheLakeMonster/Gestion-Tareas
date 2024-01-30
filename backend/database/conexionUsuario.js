@@ -1,11 +1,12 @@
-const { Sequalize, Op } = require('sequelize');
+const { Sequelize, Op } = require('sequelize');
 const models = require('../models/index.js');
-const ConexionSequalize = require('./conexionSequalize.js');
+const ConexionSequelize = require('./conexionSequelize.js');
+const bcrypt = require('bcrypt');
 
 class conexionUsuario {
 
     constructor() {
-        this.con = new ConexionSequalize();
+        this.con = new ConexionSequelize();
     }
 
     /* -------------------- FUNCIONES DE LA TABLA DE USUARIOS ------------------ */
@@ -92,59 +93,38 @@ class conexionUsuario {
         return resultado;
     }
 
+    /* -------------------- FUNCIONES PARA EL INICIO DE SESIÓN ------------------ */
+
     login = async (email, password) => {
-        let resultado = [];
+        let resultado = 0
         this.con.conectar();
 
-        resultado = await models.User.findOne({
-            where: {
-                email: email,
-                password: password
-            }
-        });
+        try {
+            resultado = await models.User.findOne({
+                where: {
+                    email: email
+                }
+            })
 
-        this.con.desconectar();
-        if (!resultado) {
+            if (!resultado) {
+                this.con.desconectar()
+                throw error;
+            }
+
+            let passwdHashed = await bcrypt.compare(password, resultado.password)
+
+            if (!passwdHashed) {
+                return null;
+            }
+
+        } catch (error) {
+            console.log(error);
+            this.con.desconectar();
             throw error;
         }
 
+        this.con.desconectar();
         return resultado;
-    }
-
-    getUserByEmail = async (email) => {
-        let resultado = [];
-        this.con.conectar();
-
-        resultado = await models.User.findOne({
-            where: {
-                email: email
-            }
-        });
-
-        this.con.desconectar();
-        if (!resultado) {
-            throw error;
-        }
-
-        return resultado;
-    }
-
-    recuperarIdUsuario = async (email) => {
-        let resultado = [];
-        this.con.conectar();
-
-        resultado = await models.User.findOne({
-            where: {
-                email: email
-            }
-        });
-
-        this.con.desconectar();
-        if (!resultado) {
-            throw error;
-        }
-
-        return resultado.id;
     }
 
     emailExisteValidator = async (email) => {
