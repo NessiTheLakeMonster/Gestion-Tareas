@@ -1,1 +1,27 @@
 <p>lista-tareas works!</p>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Descripcion</th>
+        <th>Dificultad</th>
+        <th>Horas previstas</th>
+        <th>Horas realizadas</th>
+        <th>Realizacion</th>
+        <th>Completada</th>
+    </tr>
+
+    @for(tarea of tareas; track tarea.id) {
+        <tr>
+            <td>{{ tarea.id }}</td>
+            <td>{{ tarea.descripcion }}</td>
+            <td>{{ tarea.dificultad }}</td>
+            <td>{{ tarea.horas_previstas }}</td>
+            <td>{{ tarea.horas_realizadas }}</td>
+            <td>{{ tarea.realizacion }}</td>
+            <td>{{ tarea.completada }}</td>
+        </tr>
+    }
+
+</table>
+

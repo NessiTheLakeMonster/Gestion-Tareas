@@ -6,6 +6,8 @@ import { MatMenuModule } from "@angular/material/menu";
 import { Router } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListaTareasComponent } from './components/admin/lista-tareas/lista-tareas.component';
+import { CrearTareaComponent } from './components/admin/crear-tarea/crear-tarea.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     RouterOutlet,
     LoginComponent,
     HomeComponent,
+    ListaTareasComponent,
+    CrearTareaComponent,
     MatMenuModule,
     RouterLink, 
     HttpClientModule],
