@@ -1,47 +1,49 @@
 'use strict';
 const bcrypt = require('bcrypt');
+const { genRolesAsignados } = require('../factories/rolesAsignadosFactory.js');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    /* try {
+      const fakeRolesAsignados = await genRolesAsignados(5);
+      await queryInterface.bulkInsert('roles_asignados', fakeRolesAsignados, {});
+    } catch (error) {
+      console.log(error);
+    } */
 
-    /* 
-        let constAdminPassword = await bcrypt.hash('admin123', 10);
-    
-        const adminUser = {
-          nombre: 'administador',
-          apellido: 'administrador',
-          email: 'administrador@administrador.com',
-          password: constAdminPassword,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-    
-        const [adminUserId] = await queryInterface.bulkInsert('users', [adminUser], { returning: true });
-    
-        const rolAdminAsignado = {
-          rolId: adminUserId,
-          userId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-    
-        await queryInterface.bulkInsert('rolAsignado', [rolAdminAsignado], {});w
-       */
-
-    const fakeUsers = {
-      id_rol: 1,
-      id_usuario: 1,
-    }
+   /*  await queryInterface.bulkInsert('roles_asignados', [
+      {
+        id_rol: 1,
+        id_usuario: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id_rol: 2,
+        id_usuario: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id_rol: 1,
+        id_usuario: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id_rol: 2,
+        id_usuario: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id_rol: 1,
+        id_usuario: 5,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {}); */
   },
 
   async down(queryInterface, Sequelize) {

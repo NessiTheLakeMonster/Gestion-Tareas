@@ -8,6 +8,8 @@ Tecnologías usadas para el desarrollo del proyecto:
 
 # Ejecución del proyecto
 
+## Para el backend
+
 Para generar la carpeta `node_modules`
 
 ```bash
@@ -30,6 +32,14 @@ npx sequelize-cli db:seed:all
 Para lanzar el servidor:
 ```bash
 nodemon app/app
+```
+
+## Para el frontend
+
+Para generar la carpeta `node_modules`
+
+```bash
+npm install
 ```
 
 # Manual para el Administrador

@@ -1,4 +1,4 @@
-const {response, request} = require('express');
+const { response, request } = require('express');
 const Conexion = require('../database/conexionTarea.js');
 
 const tareasGet = async (req = request, res = response) => {
@@ -36,6 +36,25 @@ const tareasGetById = async (req = request, res = response) => {
             });
         });
 
+}
+
+const tareasGetByUserId = async (req = request, res = response) => {
+    const conx = new Conexion();
+
+    conx.getTareasUsuario(req.params.id)
+        .then((resultado) => {
+            res.json({
+                ok: true,
+                resultado
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({
+                ok: false,
+                error
+            });
+        });
 }
 
 const postTarea = async (req = request, res = response) => {
@@ -105,6 +124,7 @@ const postAsignaciones = async (req = request, res = response) => {
 module.exports = {
     tareasGet,
     tareasGetById,
+    tareasGetByUserId,
     postTarea,
     putTarea,
     deleteTarea,

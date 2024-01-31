@@ -1,1 +1,20 @@
 <p>crear-tarea works!</p>
+
+<div class="container">
+    <h1 class="text-center my-4">Crea una nueva tarea</h1>
+
+    <form [formGroup]="formCrearTarea">
+        <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="mailLogin" placeholder="Descripcion de la tarea" formControlName="desc">
+            <label for="desc">Descripción</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input class="form-control" type="email" id="mailLogin" placeholder="name@example.com" formControlName="email">
+            <label for="mailLogin">Correo Electrónico</label>
+        </div>
+
+        <button class="btn btn-primary" type="submit" (click)="crearTarea()">Iniciar sesión</button>
+    </form>
+
+</div>

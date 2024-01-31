@@ -24,14 +24,6 @@ export class TareasService {
     )
   }
 
-  /*   getTareas():Observable<Tarea> {
-      let httpOptions = {
-        headers: new HttpHeaders({'Content-Type': 'application/json'}),
-        observe: 'response' as 'response'
-      };
-      return this.http.get<Tareas>(env.URL + 'api/tareas', httpOptions)
-    } */
-
   private token: string | number = '';
 
   setToken(token: string): void {

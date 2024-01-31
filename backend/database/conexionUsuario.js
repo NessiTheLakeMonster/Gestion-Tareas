@@ -49,7 +49,13 @@ class conexionUsuario {
         this.con.conectar();
 
         try {
-            const usuarioNuevo = await models.User.create(body);
+            const usuarioNuevo = await models.User.create(body)
+
+            // Cuando se crea un usuario, se le asigna el rol de programador por defecto
+            const rolAsignado = await models.RolesAsignados.create({
+                id_rol: 2,
+                id_usuario: usuarioNuevo.id
+            })
             resultado = 1;
         } catch (error) {
             if (error instanceof Sequelize.UniqueConstraintError) {
@@ -127,6 +133,8 @@ class conexionUsuario {
         return resultado;
     }
 
+    /* -------------------- FUNCIONES PARA EL VALIDATOR ------------------ */
+
     emailExisteValidator = async (email) => {
         let resultado = [];
         this.con.conectar();
@@ -142,6 +150,7 @@ class conexionUsuario {
             throw error;
         }
     }
+
 }
 
 module.exports = conexionUsuario;

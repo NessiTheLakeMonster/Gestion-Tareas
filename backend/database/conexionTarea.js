@@ -1,4 +1,4 @@
-const {Seqealize, Op} = require('sequelize');
+const {Sequelize, Op} = require('sequelize');
 const models = require('../models/index.js');
 const ConexionSequelize = require('./conexionSequelize.js');
 
@@ -118,6 +118,27 @@ class conexionTarea {
             return resultado;
         }
     } 
+
+    // Ver tareas de un usuario concreto
+    getTareasUsuario = async (idUsuario) => {
+        let resultado = [];
+        this.con.conectar();
+
+        resultado = await models.TareaAsignada.findAll({
+            include: [{
+                model: models.Tarea,
+                as: 'tareas_asignadas', 
+                required: true
+            }],
+            where: {
+                id_usuario: idUsuario
+            }
+        });
+
+        this.con.desconectar();
+        return resultado;
+    }
+    
 }
 
 module.exports = conexionTarea;

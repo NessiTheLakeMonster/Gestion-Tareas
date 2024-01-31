@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatError, MatFormField, MatLabel, MatSuffix } from "@angular/material/form-field";
-import { MatIcon } from "@angular/material/icon";
-import { MatButton, MatIconButton } from "@angular/material/button";
-import { MatInput } from "@angular/material/input";
 import { Router, RouterLink } from "@angular/router";
 import { AccesoUsuario, UsuarioLogin } from "../../interfaces/usuario";
 import { AuthService } from "../../services/auth/auth.service";
@@ -14,15 +10,7 @@ import { HttpResponse } from "@angular/common/http";
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    MatError,
-    MatFormField,
-    MatIcon,
-    MatIconButton,
-    MatInput,
-    MatLabel,
-    MatSuffix,
-    RouterLink,
-    MatButton
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

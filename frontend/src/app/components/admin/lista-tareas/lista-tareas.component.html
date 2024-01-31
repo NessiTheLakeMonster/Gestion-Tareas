@@ -1,15 +1,17 @@
-<p>lista-tareas works!</p>
+<h1 class="tittle text-center">Tareas Totales</h1>
 
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Descripcion</th>
-        <th>Dificultad</th>
-        <th>Horas previstas</th>
-        <th>Horas realizadas</th>
-        <th>Realizacion</th>
-        <th>Completada</th>
-    </tr>
+<table class="table table-striped m-5">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descripcion</th>
+            <th>Dificultad</th>
+            <th>Horas previstas</th>
+            <th>Horas realizadas</th>
+            <th>Realizacion</th>
+            <th>Completada</th>
+        </tr>
+    </thead>
 
     @for(tarea of tareas; track tarea.id) {
         <tr>
