@@ -10,15 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      /* this.belongsToMany(models.User, {
+      this.belongsToMany(models.User, {
         through: models.TareaAsignada,
         as: 'usuarios',
         foreignKey: 'id_tarea'
-      }); */
-
-      this.hasMany(models.TareaAsignada, {
-        foreignKey: 'id_tarea',
-        as: 'tareas_asignadas'
       });
     }
   }
@@ -28,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     horas_previstas: DataTypes.INTEGER,
     horas_realizadas: DataTypes.INTEGER,
     realizacion: DataTypes.INTEGER,
-    completada: DataTypes.BOOLEAN,
-    id_usuario: DataTypes.INTEGER
+    completada: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Tarea',

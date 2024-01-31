@@ -6,7 +6,7 @@ const {check} = require('express-validator');
 
 router.get('/', controlador.tareasGet);
 router.get('/:id', controlador.tareasGetById);
-router.get('/usuario/:id', controlador.tareasGetByUserId);
+router.get('/usuario/:id', controlador.tareasGetByIdUsuario);
 router.delete('/:id', controlador.deleteTarea);
 
 router.post('/',

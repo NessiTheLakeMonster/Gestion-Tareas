@@ -38,7 +38,7 @@ const tareasGetById = async (req = request, res = response) => {
 
 }
 
-const tareasGetByUserId = async (req = request, res = response) => {
+const tareasGetByIdUsuario = async (req = request, res = response) => {
     const conx = new Conexion();
 
     conx.getTareasUsuario(req.params.id)
@@ -124,7 +124,7 @@ const postAsignaciones = async (req = request, res = response) => {
 module.exports = {
     tareasGet,
     tareasGetById,
-    tareasGetByUserId,
+    tareasGetByIdUsuario,
     postTarea,
     putTarea,
     deleteTarea,

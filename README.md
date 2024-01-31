@@ -106,3 +106,5 @@ npm install
 
 + Ruta: `http://localhost:9090/api/tareas/asignar/{idTarea}/{idUsuario}`
 + Verbo: `POST`
+
+#### Ver Tareas de un Usuario
