@@ -24,6 +24,19 @@ export class TareasService {
     )
   }
 
+  getTareasAsignadasByUsuario(): Observable<Tareas> {
+    const headers = new HttpHeaders({
+      'x-token': this.getToken(),
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.get<Tareas>(env.URL + 'api/tareas/usuario/:id').pipe(
+      catchError((error) => {
+        return of(error)
+      })
+    )
+  }
+
   private token: string | number = '';
 
   setToken(token: string): void {

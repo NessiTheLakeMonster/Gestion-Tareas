@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaTareasComponent } from './components/admin/lista-tareas/lista-tareas.component';
 import { CrearTareaComponent } from './components/admin/crear-tarea/crear-tarea.component';
+import { TareasAsignadasComponent } from './components/programador/tareas-asignadas/tareas-asignadas.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { CrearTareaComponent } from './components/admin/crear-tarea/crear-tarea.
     HomeComponent,
     ListaTareasComponent,
     CrearTareaComponent,
+    TareasAsignadasComponent,
     MatMenuModule,
     RouterLink, 
     HttpClientModule],
