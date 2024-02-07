@@ -34,6 +34,7 @@ export class LoginComponent {
       next: (response: HttpResponse<AccesoUsuario>) => {
         if (response.status == 200) {
           alert("Login correcto");
+          localStorage.setItem('token', response.body?.token || '');
           this.router.navigate(['/home']);
         }
       },

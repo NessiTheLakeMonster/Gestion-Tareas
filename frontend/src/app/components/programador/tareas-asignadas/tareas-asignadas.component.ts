@@ -9,17 +9,17 @@ import { Tarea, Tareas } from '../../../interfaces/tarea';
   templateUrl: './tareas-asignadas.component.html',
   styleUrl: './tareas-asignadas.component.css'
 })
-export class TareasAsignadasComponent implements OnInit {
+export class TareasAsignadasComponent /* implements OnInit */ {
 
   tareas: Array<Tarea> = [];
 
   constructor(private tareasService: TareasService) { }
 
-  ngOnInit(): void {
+  /* ngOnInit(): void {
     this.tareasAsignadas();
-  }
+  } */
 
-  tareasAsignadas() {
+  /* tareasAsignadas() {
     this.tareasService.getTareasAsignadasByUsuario().subscribe({
       next: (data: Tareas) => {
 
@@ -30,6 +30,6 @@ export class TareasAsignadasComponent implements OnInit {
         console.log(error);
       }
     });
-  }
+  } */
 
 }

@@ -47,6 +47,12 @@ class conexionUsuario {
     registrarUsuario = async (body) => {
         let resultado = 0;
         this.con.conectar();
+        body ={
+            nombre: body.nombre,
+            apellido: body.apellido,
+            email: body.email,
+            password: await bcrypt.hash(body.password, 10),
+        }
 
         try {
             const usuarioNuevo = await models.User.create(body)
