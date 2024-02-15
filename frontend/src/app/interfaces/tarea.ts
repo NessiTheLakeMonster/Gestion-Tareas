@@ -14,3 +14,14 @@ export interface Tarea {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface AddTarea {
+    descripcion: string;
+    dificultad: string;
+    horas_previstas: number;
+    horas_realizadas: number;
+    realizacion: string;
+    completada: boolean;
+    /* createdAt: Date;
+    updatedAt: Date; */
+}

@@ -1,20 +1,42 @@
 <p>crear-tarea works!</p>
 
-<div class="container">
-    <h1 class="text-center my-4">Crea una nueva tarea</h1>
+<form [formGroup]="formCrearTarea" class="container form p-5 col-5" style="background-color: rgb(199, 194, 194); border-radius: 10px;">
+    <div class="form mb-3">
+        <label for="descripcion">Descripcion:</label>
+        <textarea class="form-control" type="text" id="descripcion" formControlName="descripcion"></textarea>
+    </div>
 
-    <form [formGroup]="formCrearTarea">
-        <div class="form-floating mb-3">
-            <input class="form-control" type="text" id="mailLogin" placeholder="Descripcion de la tarea" formControlName="desc">
-            <label for="desc">Descripción</label>
-        </div>
+    <div class="form mb-3">
+        <label for="dificultad">Dificultad:</label>
+        <select class="form-control" id="dificultad" formControlName="dificultad">
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+        </select>
+    </div>
 
-        <div class="form-floating mb-3">
-            <input class="form-control" type="email" id="mailLogin" placeholder="name@example.com" formControlName="email">
-            <label for="mailLogin">Correo Electrónico</label>
-        </div>
+    <div class="form mb-3">
+        <label for="horas_previstas">Horas previstas:</label>
+        <input class="form-control" type="number" id="horas_previstas" formControlName="horas_previstas">
+    </div>
 
-        <button class="btn btn-primary" type="submit" (click)="crearTarea()">Iniciar sesión</button>
-    </form>
+    <div class="form mb-3">
+        <label for="horas_realizadas">Horas realizadas:</label>
+        <input class="form-control" type="number" id="horas_realizadas" formControlName="horas_realizadas">
+    </div>
 
-</div>
+    <div class="form mb-3">
+        <label for="realizacion">Realizacion:</label>
+        <input class="form-control" type="text" id="realizacion" formControlName="realizacion">
+    </div>
+
+    <div class="form mb-3">
+        <label for="completada">Completada:</label>
+        <select class="form-control" id="completada" formArrayName="completada">
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary btn-lg" (click)="addTarea()">Guardar cambios</button>
+</form>

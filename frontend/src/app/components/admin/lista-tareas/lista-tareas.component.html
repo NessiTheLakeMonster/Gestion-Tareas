@@ -26,7 +26,7 @@
                     <td>{{ tarea.horas_realizadas }}</td>
                     <td>{{ tarea.realizacion }}</td>
                     <td>{{ tarea.completada }}</td>
-                    <td><button class="btn btn-danger" (click)="borrarTarea()">Borrar</button></td>
+                    <td><button class="btn btn-danger" (click)="borrarTarea(tarea.id)">Borrar</button></td>
                     <td><button class="btn btn-success" (click)="seleccionarTarea(tarea)">Seleccionar</button></td>
                 </tr>
             }
@@ -35,6 +35,8 @@
 </div>
 
 <hr>
+
+<button class="btn btn-primary m-5" (click)="crearTarea()">Creación de una nueva tarea</button>
 
 <h1 class="tittle text-center">Edición de una tarea</h1>
 <form class="container form p-5 col-5" style="background-color: rgb(199, 194, 194); border-radius: 10px;">

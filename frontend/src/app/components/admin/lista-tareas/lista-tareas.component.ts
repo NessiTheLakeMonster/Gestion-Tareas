@@ -3,6 +3,7 @@ import { TareasService } from '../../../services/tareas/tareas.service';
 import { Tarea, Tareas } from '../../../interfaces/tarea';
 import { HttpResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -25,7 +26,7 @@ export class ListaTareasComponent implements OnInit {
     updatedAt: new Date()
   };
 
-  constructor(private tareasService: TareasService) { }
+  constructor(private tareasService: TareasService, private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerTareas();
@@ -44,12 +45,27 @@ export class ListaTareasComponent implements OnInit {
     })
   }
 
-  borrarTarea() {
+  borrarTarea(id: number) {
+    if (confirm('¿Estás seguro de que quieres borrar esta tarea?')) {
+      this.tareasService.borraTarea(id).subscribe({
+        next: (data: HttpResponse<Tarea>) => {
+          console.log(data);
+          this.obtenerTareas();
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+    }
   }
 
   seleccionarTarea(tarea: Tarea) {
     this.tareaSeleccionada = tarea;
     console.log(this.tareaSeleccionada);
+  }
+
+  crearTarea() {
+    this.router.navigate(['/creartarea']);
   }
 
 }
