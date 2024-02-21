@@ -18,7 +18,7 @@ class Server {
         this.conectarMongoose();
 
         this.routes();
-        
+
     }
 
     conectarMongoose() {
@@ -29,7 +29,7 @@ class Server {
 
         this.db = mongoose.connection;
         this.db.on('error', console.error.bind(console, 'Error de conexión a MongoDB:'));
-        this.db.once('open', () => {console.log('Conexión exitosa a MongoDB');});
+        this.db.once('open', () => { console.log('Conexión exitosa a MongoDB'); });
     }
 
     middlewares() {
@@ -37,10 +37,10 @@ class Server {
         this.app.use(express.json());
     }
 
-    routes(){
-        this.app.use(this.auth, require('../routes/authRoutes'));
+    routes() {
+        /* this.app.use(this.auth, require('../routes/authRoutes')); */
         this.app.use(this.usuariosPath, require('../routes/userRoutes'));
-        this.app.use(this.tareasPath, require('../routes/tareasRoutes'));
+        /* this.app.use(this.tareasPath, require('../routes/tareasRoutes')); */
     }
 
     listen() {
