@@ -1,4 +1,5 @@
 const UserModel = require('../models/usuarioMongoose');
+const TareaModel = require('../models/tareaMongoose');
 
 class ConexionUsuario {
 
@@ -18,7 +19,7 @@ class ConexionUsuario {
         let resultado = [];
 
         try {
-            resultado = await UserModel.find({ id });
+            resultado = await UserModel.findOne({ id });
             return resultado;
         } catch (error) {
             console.log(error);
@@ -69,6 +70,41 @@ class ConexionUsuario {
         try {
             resultado = await UserModel.updateOne({ id }, { nombre, apellido, email, password, roles });
             return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    putRolesUsuario = async (id, roles) => {
+        let resultado = [];
+
+        try {
+            resultado = await UserModel.updateOne({ id }, { $addToSet: { roles: { $each: roles } } });
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    asignarTareaUsuario = async (idUsuario, idTarea) => {
+        let resultado = [];
+
+        try {
+
+            let tarea = await TareaModel.findOne({ id: idTarea });
+            console.log(idUsuario);
+            console.log(idTarea);
+            console.log(tarea);
+
+            if (!tarea) {
+                throw new Error("Tarea no encontrada");
+            } else {
+                resultado = await UserModel.updateOne({ id: idUsuario }, { $addToSet: { tarea_asignada: tarea } });
+            }
+            return resultado;
+
         } catch (error) {
             console.log(error);
             throw error;

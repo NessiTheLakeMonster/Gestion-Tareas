@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     id: {
         type: Number,
-        required: [true, 'El nombre es obligatorio']
+        required: [true, 'El id es obligatorio']
     },
     nombre: {
         type: String,
@@ -21,14 +21,15 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'La contraseña es obligatoria']
-    }, 
+    },
     roles: {
         type: Array,
         required: [true, 'El rol es obligatorio']
     },
-    tarea_asignada: {
-        type: Array
-    }
+    tarea_asignada: [{
+        type: mongoose.Schema.Types.Mixed,
+        ref: 'tareas'
+    }]
 }, { collection: 'usuarios', versionKey: false });
 
 const userModel = mongoose.model('Usuario', userSchema);

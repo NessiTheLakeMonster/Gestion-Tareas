@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const tareaSchema = new mongoose.Schema({
+    id: {
+        type: Number,
+        required: [true, 'El id es obligatorio']
+    },
     descripcion: {
         type: String,
         required: [true, 'La descripción es obligatoria']
