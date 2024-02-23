@@ -1,0 +1,263 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Gestion Tareas Mongoose",
+    "dateExported": "2024-02-23T09:32:06.634Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "beaf8562-8e4a-4b75-a462-b677a61accc4",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Listar Usuarios",
+            "url": "http://localhost:9090/api/usuarios",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-02-21T08:56:03.616Z",
+            "modified": "2024-02-22T23:25:41.388Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjIsImlhdCI6MTcwODY0MzkwNSwiZXhwIjoxNzA4NzMwMzA1fQ.e0DRfvLtm7QERJFxsVHwOaTCx8P2KyIcMJvEdmbm57s"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "69ad5a3b-4875-4298-94ec-92fd8df8c398",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Registrar Usuario",
+            "url": "http://localhost:9090/api/usuarios",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-21T09:43:28.835Z",
+            "modified": "2024-02-22T23:07:12.982Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"InesM\",\n  \"apellido\": \"Barrera\",\n  \"email\": \"inesines5@gmail.com\",\n  \"password\": \"admin123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f1a3e66f-48bd-42c2-9daf-38c3f4d9d4d2",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Login Usuario",
+            "url": "http://localhost:9090/api/usuarios/login",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-02-21T12:23:46.217Z",
+            "modified": "2024-02-22T23:24:39.460Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\" : \"inesmballe@gmail.com\",\n  \"password\" : \"admin123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b3defbf7-4a2a-464c-a200-68c4b0f716ea",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Añadir Rol a Usuario",
+            "url": "http://localhost:9090/api/usuarios/addRol/4",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-02-21T13:08:07.402Z",
+            "modified": "2024-02-21T16:35:09.177Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"roles\": [\"programador\"]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1bda8832-89ab-4b74-9ae9-22b01bda5379",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Asignar Tarea a Usuario",
+            "url": "http://localhost:9090/api/usuarios/asignarTarea/2/2",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-02-21T18:19:23.989Z",
+            "modified": "2024-02-22T22:54:35.485Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "bc812a83-56ad-4dc0-851c-16631f2e90ac",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Buscar Tarea",
+            "url": "http://localhost:9090/api/tareas/1",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-02-22T21:33:06.172Z",
+            "modified": "2024-02-22T21:41:03.662Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "3522f07b-5bd4-4174-89ac-840f1ca59884",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Buscar Usuario",
+            "url": "http://localhost:9090/api/usuarios/1",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-02-22T21:43:20.610Z",
+            "modified": "2024-02-22T21:43:35.812Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "34445a48-e7e5-48ba-aed6-f637b4382f4d",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Crear Tarea",
+            "url": "http://localhost:9090/api/tareas/",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2024-02-22T22:44:57.081Z",
+            "modified": "2024-02-22T22:48:48.325Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"descripcion\": \"prueba\",\n  \"dificultad\": \"media\",\n  \"horas_previstas\": 12,\n  \"horas_realizadas\": 2,\n  \"realizacion\": 0.02,\n  \"completada\": false\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6863b324-f8d6-400f-8e31-781268b6f3c5",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Ver Tareas de un Usuario",
+            "url": "http://localhost:9090/api/misTareas/2",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-02-22T22:52:52.389Z",
+            "modified": "2024-02-22T22:54:44.227Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8d4102f6-732e-4bdf-af36-fd86ab332747",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Marcar Tarea como Completada",
+            "url": "http://localhost:9090/api/tareas/completada/1",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2024-02-22T23:03:27.920Z",
+            "modified": "2024-02-22T23:04:03.959Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6b3c8803-add4-46ba-805e-2cb749f47f19",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Actualizar Tarea",
+            "url": "http://localhost:9090/api/tareas/2",
+            "method": "PUT",
+            "sortNum": 110000,
+            "created": "2024-02-22T23:04:27.364Z",
+            "modified": "2024-02-22T23:05:16.728Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"descripcion\": \"prueba\",\n  \"dificultad\": \"alta\",\n  \"horas_previstas\": 12,\n  \"horas_realizadas\": 2,\n  \"realizacion\": 0.02,\n  \"completada\": false\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e37f7caf-7555-4aa9-9ff0-d05785b8999e",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Ranking de usuarios",
+            "url": "http://localhost:9090/api/ranking",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2024-02-22T23:32:33.886Z",
+            "modified": "2024-02-22T23:32:47.172Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6765dd64-befa-4d5e-a316-d723d622e954",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Borrar Tarea",
+            "url": "http://localhost:9090/api/tareas/6",
+            "method": "DELETE",
+            "sortNum": 130000,
+            "created": "2024-02-22T23:54:36.757Z",
+            "modified": "2024-02-22T23:55:10.074Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a3356c20-e482-41d6-b913-020a14a73a21",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Borrar Usuario",
+            "url": "http://localhost:9090/api/usuarios/3",
+            "method": "DELETE",
+            "sortNum": 140000,
+            "created": "2024-02-22T23:58:50.463Z",
+            "modified": "2024-02-23T00:00:50.004Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1ecc12b0-a52e-4de7-804c-9c72d5a0bb0a",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Ver tareas pendientes del usuario",
+            "url": "http://localhost:9090/api/tareasPendientes/2",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2024-02-23T00:04:49.086Z",
+            "modified": "2024-02-23T00:05:25.172Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f5d9a84a-9a6a-49ea-b319-c32cee24a8b7",
+            "colId": "7fb68c69-6048-441e-b843-06c130203023",
+            "containerId": "",
+            "name": "Ver tares completadas del usuario",
+            "url": "http://localhost:9090/api/tareasCompletadas/2",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2024-02-23T00:09:58.590Z",
+            "modified": "2024-02-23T00:10:15.409Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

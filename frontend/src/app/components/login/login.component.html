@@ -1,0 +1,19 @@
+<div class="container">
+    <h1 class="text-center my-4">Inicia sesión</h1>
+
+    <form [formGroup]="formLogin">
+        <div class="form-floating mb-3">
+            <input class="form-control" type="email" id="mailLogin" placeholder="name@example.com" formControlName="email">
+            <label for="mailLogin">Correo Electrónico</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input class="form-control" type="password" id="passLogin" placeholder="Contraseña" formControlName="password">
+            <label for="passLogin">Contraseña</label>
+        </div>
+
+        <button class="btn btn-primary" type="submit" (click)="login()">Iniciar sesión</button>
+    </form>
+
+</div>
+
