@@ -1,5 +1,12 @@
 # Proyecto de tareas realizado con Mongoose
 
+Ejercicio de gestión de tareas con Mongoose por la alumna Inés Mª Barrera Llerena.
+
+> [!IMPORTANT]
+> Para poder exportar la Base de Datos en mongo se han proporcionado los archivos 
+> `tareas.json` y `usuarios.json` que se encuentran en la carpeta `dump
+> gestion-tareas` del proyecto.
+
 # Manual del administrador
 
 ## Rutas para los usuarios
@@ -40,7 +47,7 @@
 - Ruta: `http://localhost:9090/api/usuarios`
 - Verbo: `GET` 
 
-### Borra un usuario
+### Borrar un usuario
 
 - Ruta: `http://localhost:9090/api/usuarios/{idUsuario}`
 - Verbo: `DELETE`

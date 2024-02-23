@@ -1,0 +1,4 @@
+_id,id,descripcion,dificultad,horas_previstas,horas_realizadas,realizacion,completada
+65d6371e40c43ca914221558,1,prueba,media,12,2,0.02,true
+65d6414b6465c453864e435c,2,prueba,alta,12,2,0.02,false
+65d866719e5c989cbbeee958,3,prueba,alta,12,2,0.02,false
