@@ -172,11 +172,116 @@ const asignarTarea = async (req, res) => {
         });
 }
 
+const verTareasUsuario = async (req, res) => {
+    const conx = new Conexion();
+
+    conx.verTareasUsuario(req.params.id)
+        .then((resultado) => {
+            res.json({
+                ok: true,
+                'msg': 'Tareas asignadas al usuario con id: ' + req.params.id,
+                resultado
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                ok: false,
+                'msg': 'Error a la hora de listar las tareas asignadas al usuario con id: ' + req.params.id,
+                error
+            });
+        });
+}
+
+const rankingUsuarios = async (req, res) => {
+    const conx = new Conexion();
+
+    conx.getUsuarios()
+        .then((resultado) => {
+            res.json({
+                ok: true,
+                'msg': 'Listado de usuarios:',
+                resultado
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                ok: false,
+                'msg': 'Error a la hora de listar los usuarios:',
+                error
+            });
+        });
+}
+
+const borrarUsuario = async (req, res) => {
+    const conx = new Conexion();
+
+    conx.deleteUsuario(req.params.id)
+        .then((resultado) => {
+            res.json({
+                ok: true,
+                'msg': 'Usuario eliminado:',
+                resultado
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                ok: false,
+                'msg': 'Error a la hora de eliminar el usuario:',
+                error
+            });
+        });
+}
+
+const tareasPendientes = async (req, res) => {
+    const conx = new Conexion();
+
+    conx.getTareasPendientes(req.params.id)
+        .then((resultado) => {
+            res.json({
+                ok: true,
+                'msg': 'Tareas pendientes del usuario con id: ' + req.params.id,
+                resultado
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                ok: false,
+                'msg': 'Error a la hora de listar las tareas pendientes del usuario con id: ' + req.params.id,
+                error
+            });
+        });
+}
+
+const tareasCompletadas = async (req, res) => {
+    const conx = new Conexion();
+
+    conx.getTareasCompletadas(req.params.id)
+        .then((resultado) => {
+            res.json({
+                ok: true,
+                'msg': 'Tareas completadas del usuario con id: ' + req.params.id,
+                resultado
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                ok: false,
+                'msg': 'Error a la hora de listar las tareas completadas del usuario con id: ' + req.params.id,
+                error
+            });
+        });
+}
+
 module.exports = {
     listarUsuarios,
     buscarUsuario,
     registroUsuario,
     loginUsuario,
     addRoles,
-    asignarTarea
+    asignarTarea,
+    verTareasUsuario,
+    rankingUsuarios,
+    borrarUsuario,
+    tareasPendientes,
+    tareasCompletadas
 }

@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "65d6297540c43ca914221557"
+  },
+  "id": 1,
+  "nombre": "Inés",
+  "apellido": "Barrera",
+  "email": "inesmballe@gmail.com",
+  "password": "admin123",
+  "roles": [
+    "admin"
+  ],
+  "tarea_asignada": []
+},
+{
+  "_id": {
+    "$oid": "65d629805d5e41d0aea454cc"
+  },
+  "id": 2,
+  "nombre": "InesM",
+  "apellido": "Llerena",
+  "email": "inesines@gmail.com",
+  "password": "admin123",
+  "roles": [
+    "programador"
+  ],
+  "tarea_asignada": [
+    {
+      "_id": {
+        "$oid": "65d6371e40c43ca914221558"
+      },
+      "id": 1,
+      "descripcion": "prueba",
+      "dificultad": "media",
+      "horas_previstas": 12,
+      "horas_realizadas": 2,
+      "realizacion": 0.02,
+      "completada": false
+    },
+    {
+      "_id": {
+        "$oid": "65d6414b6465c453864e435c"
+      },
+      "id": 2,
+      "descripcion": "prueba",
+      "dificultad": "media",
+      "horas_previstas": 12,
+      "horas_realizadas": 2,
+      "realizacion": 0.02,
+      "completada": false
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65d7d3cfc9753107ea368160"
+  },
+  "id": 4,
+  "nombre": "InesM",
+  "apellido": "Barrera",
+  "email": "inesines5@gmail.com",
+  "password": "admin123",
+  "roles": [
+    "programador"
+  ],
+  "tarea_asignada": []
+}]

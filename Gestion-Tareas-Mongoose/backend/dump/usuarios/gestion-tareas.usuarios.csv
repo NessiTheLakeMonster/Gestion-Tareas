@@ -1,0 +1,4 @@
+_id,id,nombre,apellido,email,password,roles[0],tarea_asignada[0]._id,tarea_asignada[1]._id,tarea_asignada[0].id,tarea_asignada[1].id,tarea_asignada[0].descripcion,tarea_asignada[1].descripcion,tarea_asignada[0].dificultad,tarea_asignada[1].dificultad,tarea_asignada[0].horas_previstas,tarea_asignada[1].horas_previstas,tarea_asignada[0].horas_realizadas,tarea_asignada[1].horas_realizadas,tarea_asignada[0].realizacion,tarea_asignada[1].realizacion,tarea_asignada[0].completada,tarea_asignada[1].completada
+65d6297540c43ca914221557,1,Inés,Barrera,inesmballe@gmail.com,admin123,admin,,,,,,,,,,,,,,,,
+65d629805d5e41d0aea454cc,2,InesM,Llerena,inesines@gmail.com,admin123,programador,65d6371e40c43ca914221558,65d6414b6465c453864e435c,1,2,prueba,prueba,media,media,12,12,2,2,0.02,0.02,false,false
+65d7d3cfc9753107ea368160,4,InesM,Barrera,inesines5@gmail.com,admin123,programador,,,,,,,,,,,,,,,,

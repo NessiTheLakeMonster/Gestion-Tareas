@@ -18,7 +18,7 @@ class ConexionTarea {
         let resultado = [];
 
         try {
-            resultado = await TareaModel.findOne({ id});
+            resultado = await TareaModel.findOne({ id });
             return resultado;
         } catch (error) {
             console.log(error);
@@ -31,6 +31,22 @@ class ConexionTarea {
 
         try {
             const lastIUser = await TareaModel.find().sort({ id: -1 }).limit(1);
+
+            if (lastIUser.length === 0) {
+                const tarea = new TareaModel({
+                    id: 1,
+                    descripcion,
+                    dificultad,
+                    horas_previstas,
+                    horas_realizadas,
+                    realizacion,
+                    completada
+                });
+
+                resultado = await tarea.save();
+                return resultado;
+            }
+
             const lastId = lastIUser[0].id;
             const newId = lastId + 1;
 
@@ -51,6 +67,43 @@ class ConexionTarea {
             throw error;
         }
     }
+
+    putTarea = async (id, descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada) => {
+        let resultado = [];
+
+        try {
+            resultado = await TareaModel.updateOne({ id }, { descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada });
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    marcarCompletada = async (id) => {
+        let resultado = [];
+
+        try {
+            resultado = await TareaModel.updateOne({ id }, { completada: true });
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    deleteTarea = async (id) => {
+        let resultado = [];
+
+        try {
+            resultado = await TareaModel.deleteOne({ id });
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
 }
 
 module.exports = ConexionTarea;

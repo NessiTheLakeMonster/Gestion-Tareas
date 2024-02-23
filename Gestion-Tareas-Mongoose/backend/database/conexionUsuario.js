@@ -94,9 +94,6 @@ class ConexionUsuario {
         try {
 
             let tarea = await TareaModel.findOne({ id: idTarea });
-            console.log(idUsuario);
-            console.log(idTarea);
-            console.log(tarea);
 
             if (!tarea) {
                 throw new Error("Tarea no encontrada");
@@ -111,6 +108,112 @@ class ConexionUsuario {
         }
     }
 
+    verTareasUsuario = async (idUsuario) => {
+        let resultado = [];
+
+        try {
+            resultado = await UserModel.findOne({ id: idUsuario }, { tarea_asignada: 1 });
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    checkRol = async (idUsuario, rol) => {
+        let resultado = false;
+
+        try {
+            const user = await UserModel.findOne({ id: idUsuario, roles: rol });
+            if (user) {
+                resultado = true;
+            }
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    rankingUsuarios = async () => {
+        let resultado = [];
+
+        try {
+            resultado = await UserModel.find({ "tarea_asignada.completada": true }).sort({ completadas: -1 });
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    borrarUsuario = async (id) => {
+        let resultado = [];
+
+        try {
+            resultado = await UserModel.deleteOne({ id });
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    getTareasPendientes = async (idUsuario) => {
+        let resultado = [];
+
+        try {
+            resultado = await UserModel.aggregate([
+                {
+                    $match:
+                    {
+                        id: Number(idUsuario)
+                    }
+                },
+                { $unwind: "$tarea_asignada" },
+                {
+                    $match:
+                    {
+                        "tarea_asignada.completada": false
+                    }
+                }
+            ]);
+
+            console.log(resultado);
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    getTareasCompletadas = async (idUsuario) => {
+        let resultado = [];
+
+        try {
+            resultado = await UserModel.aggregate([
+                {
+                    $match:
+                    {
+                        id: Number(idUsuario)
+                    }
+                },
+                { $unwind: "$tarea_asignada" },
+                {
+                    $match:
+                    {
+                        "tarea_asignada.completada": true
+                    }
+                }
+            ]);
+
+            console.log(resultado);
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
 }
 
 module.exports = ConexionUsuario;
