@@ -44,8 +44,85 @@ const asignarTarea = async (id_usuario, id_tarea) => {
     }
 }
 
+const crearTarea = async (descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada) => {
+    try {
+        const tarea = new Models.Tarea({
+            descripcion,
+            dificultad,
+            horas_previstas,
+            horas_realizadas,
+            realizacion,
+            completada
+        });
+        return tarea.save();
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error);
+        throw new Error('Error al conectar a la base de datos');
+    }
+}
+
+const modificarTarea = async (id, descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada) => {
+    try {
+        const tarea = await Models.Tarea.findOne(id);
+        tarea.descripcion = descripcion;
+        tarea.dificultad = dificultad;
+        tarea.horas_previstas = horas_previstas;
+        tarea.horas_realizadas = horas_realizadas;
+        tarea.realizacion = realizacion;
+        tarea.completada = completada;
+        return tarea.save();
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error);
+        throw new Error('Error al conectar a la base de datos');
+    }
+}
+
+const marcarTareaCompletada = async (id) => {
+    try {
+        const tarea = await Models.Tarea.findByPk(id);
+        tarea.completada = true;
+        return tarea.save();
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error);
+        throw new Error('Error al conectar a la base de datos');
+    }
+}
+
+const verTareasCompletadas = async () => {
+    try {
+        const tareas = await Models.Tarea.findAll({
+            where: {
+                completada: true
+            }
+        });
+        return tareas;
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error);
+        throw new Error('Error al conectar a la base de datos');
+    }
+}
+
+const verTareasPendientes = async () => {
+    try {
+        const tareas = await Models.Tarea.findAll({
+            where: {
+                completada: false
+            }
+        });
+        return tareas;
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error);
+        throw new Error('Error al conectar a la base de datos');
+    }
+}
+
 module.exports = {
     listarTareas,
     verTareasUsuario,
-    asignarTarea
+    asignarTarea,
+    crearTarea,
+    modificarTarea,
+    marcarTareaCompletada,
+    verTareasCompletadas,
+    verTareasPendientes
 }

@@ -29,6 +29,7 @@ const typeDefs = gql`
         id: ID
         id_usuario: ID
         id_rol: ID
+        usuario: User
     }
 
     type TareaAsignada {
@@ -43,12 +44,20 @@ const typeDefs = gql`
         tareas: [Tarea]
         buscarUsuario(id: ID!): User
         verTareasUsuario(id: ID!): [TareaAsignada]
+        verTareasCompletadas: [Tarea]
+        verTareasPendientes: [Tarea]
     }
 
     type Mutation {
         registrarUsuario(nombre: String!, apellido: String!, email: String!, password: String!): User
         loginUsuario(email: String!, password: String!): User
         asignarTarea(id_usuario: ID!, id_tarea: ID!): TareaAsignada
+        modificarUsuario(id: ID!, nombre: String!, apellido: String!, email: String!, password: String!): User
+        deleteUsuario(id: ID!): User
+        crearTarea(descripcion: String!, dificultad: String!, horas_previstas: Int!, horas_realizadas: Int!, realizacion: Int!, completada: Boolean!): Tarea
+        modificarTarea(id: ID!, descripcion: String!, dificultad: String!, horas_previstas: Int!, horas_realizadas: Int!, realizacion: Int!, completada: Boolean!): Tarea
+        marcarTareaCompletada(id: ID!): Tarea
+        asignarAdmin(id_usuario: ID!): RolAsignado
     }
 `
 

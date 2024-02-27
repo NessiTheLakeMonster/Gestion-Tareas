@@ -13,12 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.Tarea, {
         through: models.TareaAsignada,
         as: 'tareasUsuario',
-        foreignKey: 'id_usuario'
+        foreignKey: 'id_usuario',
+        onDelete: 'CASCADE'
       });
       this.belongsToMany(models.Roles, {
         through: models.RolesAsignados,
         as: 'roles',
-        foreignKey: 'id_usuario'
+        foreignKey: 'id_usuario',
+        onDelete: 'CASCADE'
       })
     }
   }

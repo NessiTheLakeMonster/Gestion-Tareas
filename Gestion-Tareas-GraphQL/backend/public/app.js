@@ -105,6 +105,44 @@ async function loginUsuario() {
     mostrarResultado(data);
 }
 
+async function modificarUsuario() {
+    const id = prompt('Ingrese el ID del usuario a editar:');
+    const nombre = prompt('Ingrese el nombre:');
+    const apellido = prompt('Ingrese el apellido:');
+    const email = prompt('Ingrese el email:');
+    const password = prompt('Ingrese el password:');
+    const query = `
+        mutation($id: ID!, $nombre: String!, $apellido: String!, $email: String!, $password: String!) {
+            modificarUsuario(id: $id, nombre: $nombre, apellido: $apellido, email: $email, password: $password) {
+                id
+                nombre
+                apellido
+                email
+            }
+        }
+    `;
+    const variables = { id, nombre, apellido, email, password };
+    const data = await enviarConsulta(query, variables);
+    mostrarResultado(data);
+}
+
+async function eliminarUsuario() {
+    const id = prompt('Ingrese el ID del usuario a eliminar:');
+    const query = `
+        mutation($id: ID!) {
+            deleteUsuario(id: $id) {
+                id
+                nombre
+                apellido
+                email
+            }
+        }
+    `;
+    const variables = { id };
+    const data = await enviarConsulta(query, variables);
+    mostrarResultado(data);
+}
+
 async function verTareasUsuario() {
     const id = prompt('Ingrese el ID del usuario:');
     const query = `
@@ -126,6 +164,152 @@ async function verTareasUsuario() {
         }
     `;
     const variables = { id };
+    const data = await enviarConsulta(query, variables);
+    mostrarResultado(data);
+}
+
+async function crearTarea() {
+    const descripcion = prompt('Ingrese la descripcion:');
+    const dificultad = prompt('Ingrese la dificultad:');
+    const horas_previstas = prompt('Ingrese las horas previstas:');
+    const horas_realizadas = prompt('Ingrese las horas realizadas:');
+    const realizacion = prompt('Ingrese la realizacion:');
+    const completada = prompt('Ingrese si esta completada:');
+    const query = `
+        mutation($descripcion: String!, $dificultad: String!, $horas_previstas: Int!, $horas_realizadas: Int!, $realizacion: Int!, $completada: Boolean!) {
+            crearTarea(descripcion: $descripcion, dificultad: $dificultad, horas_previstas: $horas_previstas, horas_realizadas: $horas_realizadas, realizacion: $realizacion, completada: $completada) {
+                id
+                descripcion
+                dificultad
+                horas_previstas
+                horas_realizadas
+                realizacion
+                completada
+            }
+        }
+    `;
+    const variables = { descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada };
+    const data = await enviarConsulta(query, variables);
+    mostrarResultado(data);
+}
+
+async function asignarTarea() {
+    const id_usuario = prompt('Ingrese el ID del usuario:');
+    const id_tarea = prompt('Ingrese el ID de la tarea:');
+    const query = `
+        mutation($id_usuario: ID!, $id_tarea: ID!) {
+            asignarTarea(id_usuario: $id_usuario, id_tarea: $id_tarea) {
+                id
+                id_usuario
+                id_tarea
+            }
+        }
+    `;
+    const variables = { id_usuario, id_tarea };
+    const data = await enviarConsulta(query, variables);
+    mostrarResultado(data);
+}
+
+async function modificarTarea() {
+    const id = prompt('Ingrese el ID de la tarea a editar:');
+    const descripcion = prompt('Ingrese la descripcion:');
+    const dificultad = prompt('Ingrese la dificultad:');
+    const horas_previstas = prompt('Ingrese las horas previstas:');
+    const horas_realizadas = prompt('Ingrese las horas realizadas:');
+    const realizacion = prompt('Ingrese la realizacion:');
+    const completada = prompt('Ingrese si esta completada:');
+    const query = `
+        mutation($id: ID!, $descripcion: String!, $dificultad: String!, $horas_previstas: Int!, $horas_realizadas: Int!, $realizacion: Int!, $completada: Boolean!) {
+            modificarTarea(id: $id, descripcion: $descripcion, dificultad: $dificultad, horas_previstas: $horas_previstas, horas_realizadas: $horas_realizadas, realizacion: $realizacion, completada: $completada) {
+                id
+                descripcion
+                dificultad
+                horas_previstas
+                horas_realizadas
+                realizacion
+                completada
+            }
+        }
+    `;
+    const variables = { id, descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada };
+    const data = await enviarConsulta(query, variables);
+    mostrarResultado(data);
+}
+
+async function marcarTareaCompletada() {
+    const id = prompt('Ingrese el ID de la tarea:');
+    const query = `
+        mutation($id: ID!) {
+            marcarTareaCompletada(id: $id) {
+                id
+                descripcion
+                dificultad
+                horas_previstas
+                horas_realizadas
+                realizacion
+                completada
+            }
+        }
+    `;
+    const variables = { id };
+    const data = await enviarConsulta(query, variables);
+    mostrarResultado(data);
+}
+
+async function verTareasCompletadas() {
+    const query = `
+        query {
+            verTareasCompletadas {
+                id
+                descripcion
+                dificultad
+                horas_previstas
+                horas_realizadas
+                realizacion
+                completada
+            }
+        }
+    `;
+    const data = await enviarConsulta(query);
+    mostrarResultado(data);
+}
+
+async function verTareasPendientes() {
+    const query = `
+        query {
+            verTareasPendientes {
+                id
+                descripcion
+                dificultad
+                horas_previstas
+                horas_realizadas
+                realizacion
+                completada
+            }
+        }
+    `;
+    const data = await enviarConsulta(query);
+    mostrarResultado(data);
+}
+
+async function asignarAdmin() {
+    const id_usuario = prompt('Ingrese el ID del usuario:');
+    const query = `
+        mutation($id_usuario: ID!) {
+            asignarAdmin(id_usuario: $id_usuario) {
+                id
+                id_usuario
+                id_rol
+                usuario {
+                    id
+                    nombre
+                    apellido
+                    email
+                }
+            }
+        }
+    `;
+    const variables = { id_usuario };
     const data = await enviarConsulta(query, variables);
     mostrarResultado(data);
 }
