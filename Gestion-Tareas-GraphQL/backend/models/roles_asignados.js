@@ -12,12 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.Roles, {
         foreignKey: 'id_rol',
-        targetKey: 'id',
         as: 'roles'
       }),
       this.belongsTo(models.User, {
         foreignKey: 'id_usuario',
-        targetKey: 'id',
         as: 'users'
       })
     }

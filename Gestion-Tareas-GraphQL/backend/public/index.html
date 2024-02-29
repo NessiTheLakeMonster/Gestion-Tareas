@@ -18,7 +18,8 @@
         <!-- Botones para realizar las consultas de usuarios -->
         <h3>Botones de consultas de Usuarios</h3>
         <button class="btn btn-primary m-2" onclick="obtenerUsuarios()">Ver Lista de Usuarios</button>
-        <button class="btn btn-primary m-2" onclick="obtenerPersonaByID()">Obtener Persona por ID</button>
+        <button class="btn btn-primary m-2" onclick="obtenerPersonaByID()">Buscar Usuario por ID</button>
+        <button class="btn btn-primary m-2" onclick="verRolesUsuario()">Ver Roles de un Usuario</button>
         <button class="btn btn-success m-2" onclick="registrarUsuario()">Registrar Nuevo Usuario</button>
         <button class="btn btn-success m-2" onclick="loginUsuario()">Login</button>
         <button class="btn btn-warning m-2" onclick="modificarUsuario()">Modificar Usuario</button>
@@ -36,6 +37,7 @@
         <button class="btn btn-success m-2" onclick="asignarTarea()">Asignar Tarea a Usuario</button>
         <button class="btn btn-warning m-2" onclick="modificarTarea()">Modificar Tarea</button>
         <button class="btn btn-warning m-2" onclick="marcarTareaCompletada()">Marcar Tarea Completada</button>
+        <button class="btn btn-danger m-2" onclick="deleteTarea()">Eliminar Tarea</button>
 
         <div class="card p-5 m-5">
             <h2 class="card-title">Resultado de la consulta</h2>

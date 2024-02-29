@@ -1,4 +1,3 @@
-const { response, request } = require('express');
 const Models = require('../models/index.js');
 
 const listarTareas = async () => {
@@ -49,21 +48,27 @@ const crearTarea = async (descripcion, dificultad, horas_previstas, horas_realiz
         const tarea = new Models.Tarea({
             descripcion,
             dificultad,
-            horas_previstas,
-            horas_realizadas,
-            realizacion,
-            completada
+            horas_previstas: parseInt(horas_previstas, 10),
+            horas_realizadas: parseInt(horas_realizadas, 10),
+            realizacion: parseInt(realizacion, 10),
+            completada: completada === 'false'
         });
+
         return tarea.save();
     } catch (error) {
         console.error('Error al conectar a la base de datos:', error);
         throw new Error('Error al conectar a la base de datos');
     }
-}
+};
 
 const modificarTarea = async (id, descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada) => {
     try {
-        const tarea = await Models.Tarea.findOne(id);
+        horas_previstas = parseInt(horas_previstas, 10);
+        horas_realizadas = parseInt(horas_realizadas, 10);
+        realizacion = parseInt(realizacion, 10);
+        completada = completada === 'true';
+
+        const tarea = await Models.Tarea.findOne({ where: { id } });
         tarea.descripcion = descripcion;
         tarea.dificultad = dificultad;
         tarea.horas_previstas = horas_previstas;
@@ -116,6 +121,17 @@ const verTareasPendientes = async () => {
     }
 }
 
+const deleteTarea = async (id) => {
+    try {
+        const tarea = await Models.Tarea.findOne({ where: { id } });
+        tarea.destroy();
+        return tarea;
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error);
+        throw new Error('Error al conectar a la base de datos');
+    }
+}
+
 module.exports = {
     listarTareas,
     verTareasUsuario,
@@ -124,5 +140,6 @@ module.exports = {
     modificarTarea,
     marcarTareaCompletada,
     verTareasCompletadas,
-    verTareasPendientes
+    verTareasPendientes,
+    deleteTarea
 }

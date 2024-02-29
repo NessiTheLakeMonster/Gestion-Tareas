@@ -15,7 +15,8 @@ module.exports = {
           model: {
             tableName: 'tareas'
           },
-          key: 'id'
+          key: 'id',
+          onDelete: 'CASCADE'
         },
       },
       id_usuario: {
@@ -26,7 +27,8 @@ module.exports = {
           },
           key: 'id'
         },
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

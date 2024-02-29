@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
-const { listarUsuarios, buscarUsuario, registrarUsuario, loginUsuario, modificarUsuario, deleteUsuario, asignarAdmin } = require('../controllers/usuarioController');
-const { listarTareas, verTareasUsuario, asignarTarea, crearTarea, modificarTarea, marcarTareaCompletada, verTareasCompletadas, verTareasPendientes } = require('../controllers/tareaController');
+const { listarUsuarios, buscarUsuario, registrarUsuario, loginUsuario, modificarUsuario, deleteUsuario, asignarAdmin, verRolesUsuario } = require('../controllers/usuarioController');
+const { listarTareas, verTareasUsuario, asignarTarea, crearTarea, modificarTarea, marcarTareaCompletada, verTareasCompletadas, verTareasPendientes, deleteTarea } = require('../controllers/tareaController');
 const { Usuario } = require('../models/user');
 
 const resolvers = {
@@ -10,7 +10,8 @@ const resolvers = {
         buscarUsuario: async (_, { id }) => buscarUsuario(_, { id }),
         verTareasUsuario: async (_, { id }) => verTareasUsuario(id),
         verTareasCompletadas: () => verTareasCompletadas(),
-        verTareasPendientes: () => verTareasPendientes()
+        verTareasPendientes: () => verTareasPendientes(),
+        verRolesUsuario: async (_, { id }) => verRolesUsuario(id)
     },
     Mutation: {
         registrarUsuario: async (_, { nombre, apellido, email, password }) => registrarUsuario(nombre, apellido, email, password),
@@ -21,7 +22,8 @@ const resolvers = {
         crearTarea: async (_, { descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada }) => crearTarea(descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada),
         modificarTarea: async (_, { id, descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada }) => modificarTarea(id, descripcion, dificultad, horas_previstas, horas_realizadas, realizacion, completada),
         marcarTareaCompletada: async (_, { id }) => marcarTareaCompletada(id),
-        asignarAdmin: async (_, { id_usuario }) => asignarAdmin(id_usuario)
+        asignarAdmin: async (_, { id }) => asignarAdmin(id),
+        deleteTarea: async (_, { id }) => deleteTarea(id)
     }
 }
 

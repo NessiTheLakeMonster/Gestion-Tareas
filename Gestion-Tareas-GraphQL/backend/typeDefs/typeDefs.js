@@ -28,8 +28,9 @@ const typeDefs = gql`
     type RolAsignado {
         id: ID
         id_usuario: ID
+        users: User
         id_rol: ID
-        usuario: User
+        roles: Rol
     }
 
     type TareaAsignada {
@@ -46,6 +47,7 @@ const typeDefs = gql`
         verTareasUsuario(id: ID!): [TareaAsignada]
         verTareasCompletadas: [Tarea]
         verTareasPendientes: [Tarea]
+        verRolesUsuario(id: ID!): [RolAsignado]
     }
 
     type Mutation {
@@ -57,7 +59,8 @@ const typeDefs = gql`
         crearTarea(descripcion: String!, dificultad: String!, horas_previstas: Int!, horas_realizadas: Int!, realizacion: Int!, completada: Boolean!): Tarea
         modificarTarea(id: ID!, descripcion: String!, dificultad: String!, horas_previstas: Int!, horas_realizadas: Int!, realizacion: Int!, completada: Boolean!): Tarea
         marcarTareaCompletada(id: ID!): Tarea
-        asignarAdmin(id_usuario: ID!): RolAsignado
+        asignarAdmin(id: ID!): RolAsignado
+        deleteTarea(id: ID!): Tarea
     }
 `
 

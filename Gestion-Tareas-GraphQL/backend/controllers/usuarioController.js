@@ -1,4 +1,3 @@
-const { response, request } = require('express');
 const Models = require('../models/index.js');
 
 const listarUsuarios = async () => {
@@ -29,18 +28,23 @@ const registrarUsuario = async (nombre, apellido, email, password) => {
             email,
             password
         });
-        return usuario.save();
 
-        // Cuando se crea un usuario, se le asigna el rol de usuario por defecto
-        const rolAsignado = new Models.RolAsignado({
+        await usuario.save();
+
+        // Cuando se registra un usuario, se le asigna el rol de programador por defecto
+        const rolAsignado = new Models.RolesAsignados({
             id_usuario: usuario.id,
             id_rol: 2
         });
+
+        await rolAsignado.save();
+
+        return usuario;
     } catch (error) {
         console.error('Error al conectar a la base de datos:', error);
         throw new Error('Error al conectar a la base de datos');
     }
-}
+};
 
 const loginUsuario = async (email, password) => {
     try {
@@ -77,13 +81,52 @@ const deleteUsuario = async (id) => {
     }
 }
 
-const asignarAdmin = async (id_usuario) => {
+const asignarAdmin = async (id) => {
     try {
+        const existingAdmin = await Models.RolesAsignados.findOne({
+            where: {
+                id_usuario: id,
+                id_rol: 1
+            }
+        });
+
+        if (existingAdmin) {
+            throw new Error('El usuario ya es administrador');
+        }
+
         const rolAsignado = new Models.RolesAsignados({
-            id_usuario,
+            id_usuario: id,
             id_rol: 1
         });
+
         return rolAsignado.save();
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error);
+        throw new Error('Error al conectar a la base de datos');
+    }
+};
+
+const verRolesUsuario = async (id) => {
+    try {
+        const rol = await Models.RolesAsignados.findAll({
+            where: {
+                id_usuario: id
+            },
+            include: [
+                {
+                    model: Models.User,
+                    as: 'users',
+                    attributes: ['id', 'nombre', 'apellido', 'email']
+                },
+                {
+                    model: Models.Roles,
+                    as: 'roles',
+                    attributes: ['id', 'nombre']
+                }
+            ],
+            attributes: ['id', 'id_usuario', 'id_rol']
+        });
+        return rol;
     } catch (error) {
         console.error('Error al conectar a la base de datos:', error);
         throw new Error('Error al conectar a la base de datos');
@@ -97,5 +140,6 @@ module.exports = {
     loginUsuario,
     modificarUsuario,
     deleteUsuario,
-    asignarAdmin
+    asignarAdmin,
+    verRolesUsuario
 }
