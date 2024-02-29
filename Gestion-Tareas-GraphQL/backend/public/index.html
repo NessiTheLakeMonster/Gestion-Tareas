@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <title>Cliente Gestión de Tareas con GraphQL</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="p-5 text-center">Cliente GraphQL Gestión de Tareas</h1>
+
+        <!-- Botones para realizar las consultas de usuarios -->
+        <h3>Botones de consultas de Usuarios</h3>
+        <button class="btn btn-primary m-2" onclick="obtenerUsuarios()">Ver Lista de Usuarios</button>
+        <button class="btn btn-primary m-2" onclick="obtenerPersonaByID()">Buscar Usuario por ID</button>
+        <button class="btn btn-primary m-2" onclick="verRolesUsuario()">Ver Roles de un Usuario</button>
+        <button class="btn btn-success m-2" onclick="registrarUsuario()">Registrar Nuevo Usuario</button>
+        <button class="btn btn-success m-2" onclick="loginUsuario()">Login</button>
+        <button class="btn btn-warning m-2" onclick="modificarUsuario()">Modificar Usuario</button>
+        <button class="btn btn-warning m-2" onclick="asignarAdmin()">Asignar Admin</button>
+        <button class="btn btn-danger m-2" onclick="eliminarUsuario()">Eliminar Usuario</button>
+
+        <hr>
+        <!-- Botones para realizar las consultas de tareas -->
+        <h3>Botones de consultas de Tareas</h3>
+        <button class="btn btn-primary m-2" onclick="obtenerTareas()">Ver Lista de Tareas</button>
+        <button class="btn btn-primary m-2" onclick="verTareasUsuario()">Ver Tareas de un Usuario</button>
+        <button class="btn btn-primary m-2" onclick="verTareasCompletadas()">Ver Tareas Completadas</button>
+        <button class="btn btn-primary m-2" onclick="verTareasPendientes()">Ver Tareas Pendientes</button>
+        <button class="btn btn-success m-2" onclick="crearTarea()">Crear una nueva Tarea</button>
+        <button class="btn btn-success m-2" onclick="asignarTarea()">Asignar Tarea a Usuario</button>
+        <button class="btn btn-warning m-2" onclick="modificarTarea()">Modificar Tarea</button>
+        <button class="btn btn-warning m-2" onclick="marcarTareaCompletada()">Marcar Tarea Completada</button>
+        <button class="btn btn-danger m-2" onclick="deleteTarea()">Eliminar Tarea</button>
+
+        <div class="card p-5 m-5">
+            <h2 class="card-title">Resultado de la consulta</h2>
+            <p class="card-text" id="resultado"></p>
+        </div>
+
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
